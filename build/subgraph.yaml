@@ -1,0 +1,24 @@
+specVersion: 0.0.4
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: ZuniswapV2Factory
+    network: ropsten
+    source:
+      address: "0xf3EB51Fde72D077f8945EFa2802B02267A4EB767"
+      abi: ZuniswapV2Factory
+      startBlock: 12577028
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - PairCreated
+      abis:
+        - name: ZuniswapV2Factory
+          file: ZuniswapV2Factory\abis\ZuniswapV2Factory.json
+      eventHandlers:
+        - event: PairCreated(indexed address,indexed address,address,uint256)
+          handler: handlePairCreated
+      file: ZuniswapV2Factory\ZuniswapV2Factory.wasm
